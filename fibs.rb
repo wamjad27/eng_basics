@@ -19,7 +19,7 @@ class Fibs
   end
 
   def all_fibs? seq_array
-    seq_array.size == space && seq_array.all? do |n|
+    seq_array.all? do |n|
       num = 5 * n * n
       Math.sqrt((num + 4)) % 1 == 0 || Math.sqrt((num - 4)) % 1 == 0
     end
@@ -32,9 +32,8 @@ class Fibs
   private
 
   def generate_fibs x
-    return generated_fibs if all_fibs?(generated_fibs)
-
-    generated_fibs << next_number unless is_known_fib? next_number
+    return generated_fibs if generated_fibs.size == space
+    generated_fibs << next_number
     generate_fibs x-1
   end
 
