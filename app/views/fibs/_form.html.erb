@@ -1,0 +1,19 @@
+<%= form_with(model: fib, local: true) do |form| %>
+  <% if fib.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+
+      <ul>
+      <% fib.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  Space: <%= form.text_field :space %><br />
+
+  <div class="actions">
+    <br />
+    <%= form.submit %>
+  </div>
+<% end %>
