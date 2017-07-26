@@ -4,14 +4,14 @@ class Fibs
   attr_accessor :generated_fibs
   attr_reader :space
 
+  def initialize
+    @generated_fibs = []
+  end
+
   def generate x
+    return generated_fibs.first(x) if generated_fibs.size >= x
     @space = x
-    @generated_fibs ||= [0,1]
-    if generated_fibs.size >= x
-      generated_fibs.first(x)
-    else
-      generate_fibs x
-    end
+    generate_fibs x
   end
 
   def is_known_fib? num
@@ -19,23 +19,27 @@ class Fibs
   end
 
   def all_fibs? seq_array
-    seq_array.size == space
+    seq_array.size == space && seq_array.all? do |n|
+      num = 5 * n * n
+      Math.sqrt((num + 4)) % 1 == 0 || Math.sqrt((num - 4)) % 1 == 0
+    end
   end
 
   def known_fibs_sum_of_squares
-    @generated_fibs ||= []
     generated_fibs.map {|n| n**2}.inject(0) {|sum, x| sum + x }
   end
 
   private
 
   def generate_fibs x
-    if all_fibs? generated_fibs
-      generated_fibs
-    else
-      num = generated_fibs[-1] + generated_fibs[-2]
-      generated_fibs << num unless is_known_fib? num
-      generate_fibs x-1
-    end
+    return generated_fibs if all_fibs?(generated_fibs)
+
+    generated_fibs << next_number unless is_known_fib? next_number
+    generate_fibs x-1
+  end
+
+  def next_number
+    @generated_fibs = [0, 1] if generated_fibs.empty?
+    generated_fibs.last(2).inject(&:+)
   end
 end

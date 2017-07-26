@@ -1,4 +1,5 @@
 require_relative '../fibs'
+require 'byebug'
 
 describe Fibs do
   subject { Fibs.new }
@@ -10,6 +11,9 @@ describe Fibs do
 
     it 'returns the number of requested fibonacci numbers' do
       expect( subject.generate(10) ).to eq(expected_result)
+      expect(subject.generate(4)).to eq([0, 1, 1, 2])
+      expect(subject.generate(2)).to eq([0, 1])
+      expect(subject.generate(0)).to eq([])
     end
 
     it 'stores the values' do
@@ -25,6 +29,8 @@ describe Fibs do
 
       it 'does not call generate_fibs' do
         expect { subject.generate(5) }.not_to raise_error
+        expect { subject.generate(3) }.to_not raise_error(Exception)
+        expect { subject.generate(6) }.to raise_error(Exception)
       end
     end
   end
@@ -61,6 +67,7 @@ describe Fibs do
     context 'when passed an array of numbers that where at least one is not a member of the sequence' do
       it 'returns false' do
         expect( subject.all_fibs?([ 0, 1, 1, 2, 3, 5, 7 ]) ).to be_falsey
+        expect( subject.all_fibs?([0, 1, 6]) ).to be_falsey
       end
     end
   end
