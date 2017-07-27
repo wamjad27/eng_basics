@@ -10,13 +10,17 @@ RSpec.describe Fib, type: :model do
 
     it 'returns the number of requested fibonacci numbers' do
       subject.space = 10
-      expect(subject.generate).to eq(expected_result)
+      subject.generate
+      expect(subject.generated_fibs).to eq(expected_result)
       subject.space = 4
-      expect(subject.generate).to eq([0, 1, 1, 2])
+      subject.generate
+      expect(subject.generated_fibs).to eq([0, 1, 1, 2])
       subject.space = 2
-      expect(subject.generate).to eq([0, 1])
+      subject.generate
+      expect(subject.generated_fibs).to eq([0, 1])
       subject.space = 0
-      expect(subject.generate).to eq([])
+      subject.generate
+      expect(subject.generated_fibs).to eq([])
     end
 
     it 'stores the values' do
@@ -45,7 +49,8 @@ RSpec.describe Fib, type: :model do
 
   describe '#is_known_fib?' do
     before do
-      subject.generate(6)
+      subject.space = 6
+      subject.generate
     end
 
     context 'when passed a fibonacci number that it has not stored' do
@@ -63,7 +68,8 @@ RSpec.describe Fib, type: :model do
 
   describe '#all_fibs?' do
     before do
-      subject.generate(10)
+      subject.space = 10
+      subject.generate
     end
 
     context 'when passed an array of numbers that are all members of the the fibonacci sequence' do
@@ -85,7 +91,8 @@ RSpec.describe Fib, type: :model do
 
     context 'when there are stored numbers' do
       before do
-        subject.generated_fibs = [ 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 ]
+        subject.space = 10
+        subject.generate
       end
 
       it 'returns the sum of the squared values for all known fibs' do

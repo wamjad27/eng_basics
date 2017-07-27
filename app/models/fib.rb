@@ -1,11 +1,17 @@
 class Fib < ApplicationRecord
   validates_numericality_of :space, greater_than: 0, only_integer: true
 
+  def as_json(options = {})
+    super((options).merge({
+      methods: [:generated_fibs, :known_fibs_sum_of_squares]
+    }))
+  end
+
   def generate
     return generated_fibs.first(space) if generated_fibs.size >= space
     @seq_array = generated_fibs
     self.fibs = generate_fibs(space).join(',')
-    generated_fibs
+    self.save
   end
 
   def is_known_fib? num
@@ -20,7 +26,7 @@ class Fib < ApplicationRecord
   end
 
   def generated_fibs
-    self.fibs.split(',').map(&:to_i)
+    self.fibs.split(',').map(&:to_i).first(space)
   end
 
   def known_fibs_sum_of_squares

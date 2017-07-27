@@ -1,0 +1,10 @@
+<div id="edit_fib_container">
+  <h1>Edit Fib Sequence</h1>
+  Space: <%= number_field_tag :space, nil, id: 'edit_fib_space_input' %><br />
+  <input id="fib_id_hidden_input" type="hidden" value="">
+  <div class="actions">
+    <br />
+    <%= button_to 'Update', '!#', id: 'update_fib' %>
+    <%= button_to 'Cancel', '!#', id: 'cancel_form' %>
+  </div>
+</div>

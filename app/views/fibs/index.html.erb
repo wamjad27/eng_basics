@@ -1,31 +1,33 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Fibs</h1>
+<%= render 'new' %>
+<%= render 'show' %>
+<%= render 'edit' %>
 
-<table>
-  <thead>
-    <tr>
-      <th><h3>Space</h3></th>
-      <th><h3>Sequence</h3></th>
-      <th><h3>Sum of Squares</h3></th>
-      <th><h3>Actions</h3></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fibs.each do |fib| %>
+<div id="index_fibs_container">
+  <button id='add_fib'> New Sequence </button>
+  <h1>Fibs</h1>
+  <table id="fibs_table">
+    <thead>
       <tr>
-        <td><%= fib.space %></td>
-        <td><%= fib.generated_fibs %></td>
-        <td><%= fib.known_fibs_sum_of_squares %></td>
-        <td><%= link_to 'Show', fib %></td>
-        <td><%= link_to 'Edit', edit_fib_path(fib) %></td>
-        <td><%= link_to 'Destroy', fib, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th><h3>Space</h3></th>
+        <th><h3>Sequence</h3></th>
+        <th><h3>Sum of Squares</h3></th>
+        <th><h3>Actions</h3></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
-
-<%= link_to 'New Fib', new_fib_path %>
+    <tbody>
+      <% @fibs.each do |fib| %>
+        <tr id="fib_row_<%=fib.id%>">
+          <td><%= fib.space %></td>
+          <td><%= fib.generated_fibs %></td>
+          <td><%= fib.known_fibs_sum_of_squares %></td>
+          <td><%= link_to 'Show', '#', data: { id: fib.id }, class: 'show-btn' %></td>
+          <td><%= link_to 'Edit', '#', data: { 'fib-id': fib.id, 'fib-space': fib.space }, class: 'edit-btn' %></td>
+          <td><%= link_to 'Destroy', '#', data: { confirm: 'Are you sure?', id: fib.id }, class: 'delete-btn' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

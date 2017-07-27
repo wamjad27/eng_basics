@@ -16,29 +16,6 @@ RSpec.describe FibsController, type: :controller do
         expect(response).to be_success
       end
     end
-
-    describe "GET #show" do
-      it "returns a success response" do
-        expect(@fib.generated_fibs.size).to eq 10
-        get :show, params: {id: @fib.to_param}
-        expect(response).to be_success
-      end
-    end
-
-    describe "GET #new" do
-      it "returns a success response" do
-        get :new, params: {space: 10}
-        expect(response).to be_success
-      end
-    end
-
-    describe "GET #edit" do
-      it "returns a success response" do
-        expect(@fib.generated_fibs.size).to eq 10
-        get :edit, params: {id: @fib.to_param}
-        expect(response).to be_success
-      end
-    end
   end
 
   context "Secure actions" do

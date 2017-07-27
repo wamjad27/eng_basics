@@ -6,22 +6,18 @@ class FibsController < ApplicationController
   end
 
   def show
-  end
-
-  def new
-    @fib = Fib.new
-  end
-
-  def edit
+    respond_to do |format|
+      format.json { render json: @fib, status: :ok  }
+    end
   end
 
   def create
     @fib = Fib.new(fib_params)
 
     respond_to do |format|
-      if @fib.generate && @fib.save
+      if @fib.generate
         format.html { redirect_to @fib, notice: 'Fib was successfully created.' }
-        format.json { render :show, status: :created, location: @fib }
+        format.json { render json: @fib, status: :created }
       else
         format.html { render :new }
         format.json { render json: @fib.errors, status: :unprocessable_entity }
@@ -31,10 +27,9 @@ class FibsController < ApplicationController
 
   def update
     respond_to do |format|
-      if @fib.update_attributes(fib_params)
-        @fib.generate && @fib.save
+      if @fib.update_attributes(fib_params) && @fib.generate
         format.html { redirect_to @fib, notice: 'Fib was successfully updated.' }
-        format.json { render :show, status: :ok, location: @fib }
+        format.json { render json: @fib, status: :ok  }
       else
         format.html { render :edit }
         format.json { render json: @fib.errors, status: :unprocessable_entity }
