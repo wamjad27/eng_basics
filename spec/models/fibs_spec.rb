@@ -1,7 +1,7 @@
-require_relative '../fibs'
+require 'rails_helper'
 
-describe Fibs do
-  subject { Fibs.new }
+RSpec.describe Fib, type: :model do
+  subject { Fib.new }
 
   describe '#generate' do
     let(:expected_result) {
@@ -12,6 +12,20 @@ describe Fibs do
       expect( subject.generate(10) ).to eq(expected_result)
     end
 
+    it 'raise ArgumentError in case of invalid arguments' do
+      expect do
+        subject.generate(-10)
+      end.to raise_error(ArgumentError)
+
+      expect do
+        subject.generate(0)
+      end.to raise_error(ArgumentError)
+
+      expect do
+        subject.generate('test')
+      end.to raise_error(ArgumentError)
+    end
+
     it 'stores the values' do
       subject.generate(10)
       expect( subject.generated_fibs ).to eq(expected_result)
@@ -20,7 +34,7 @@ describe Fibs do
     context 'when it already knows the requested number of sequence numbers' do
       before do
         subject.generate(5)
-        allow_any_instance_of(Fibs).to receive(:generate_fibs) { raise Exception }
+        allow_any_instance_of(Fib).to receive(:generate_fibs) { raise Exception }
       end
 
       it 'does not call generate_fibs' do

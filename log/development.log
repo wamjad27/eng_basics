@@ -1,0 +1,2032 @@
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (5.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateFibs (20180329162444)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "fibs" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "max_number" integer, "sequence" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180329162444"]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-03-29 16:25:06.184208"], ["updated_at", "2018-03-29 16:25:06.184208"]]
+  [1m[35m (3.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/" for 127.0.0.1 at 2018-03-29 19:25:45 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/boogie/.rvm/gems/ruby-2.4.2/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/boogie/.rvm/gems/ruby-2.4.2/gems/railties-5.1.5/lib/rails/templates/rails/welcome/index.html.erb (3.1ms)
+Completed 200 OK in 15ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:25:50 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (3.6ms)
+Completed 200 OK in 687ms (Views: 683.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 19:25:54 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (16.7ms)
+  Rendered fibs/new.html.erb within layouts/application (17.9ms)
+Completed 200 OK in 42ms (Views: 33.9ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 19:26:07 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"zOLzM+AJh/t/825HHQ/2QjdGvTB0p7W8Opvbsu5XdIuA1dZyoSy8j0eiBoCvdiNwdta93kI0lX0khmjhyaOuFw==", "fib"=>{"max_number"=>"3", "sequence"=>"87687687"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["max_number", 3], ["sequence", "87687687"], ["created_at", "2018-03-29 16:26:07.827528"], ["updated_at", "2018-03-29 16:26:07.827528"]]
+  [1m[35m (3.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/1
+Completed 302 Found in 17ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/fibs/1" for 127.0.0.1 at 2018-03-29 19:26:07 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 34ms (Views: 26.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:26:12 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 30ms (Views: 28.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:28:09 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (2.3ms)
+Completed 200 OK in 41ms (Views: 38.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs/1/edit" for 127.0.0.1 at 2018-03-29 19:28:10 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.1ms)
+  Rendered fibs/edit.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 19ms (Views: 17.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:28:15 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.6ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (4.7ms)
+Completed 200 OK in 35ms (Views: 32.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 19:28:17 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (1.8ms)
+  Rendered fibs/new.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 17ms (Views: 16.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:28:28 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 19ms (Views: 17.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs/1/edit" for 127.0.0.1 at 2018-03-29 19:28:30 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (1.9ms)
+  Rendered fibs/edit.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 18ms (Views: 16.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:28:36 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 18ms (Views: 17.2ms | ActiveRecord: 0.2ms)
+
+
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddSquaresToFibs (20180329163100)
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (1.1ms)[0m  [1m[35mALTER TABLE "fibs" ADD "squares" integer[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180329163100"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:32:33 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (9.6ms)
+Completed 200 OK in 169ms (Views: 158.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/fibs/1" for 127.0.0.1 at 2018-03-29 19:32:36 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 26ms (Views: 20.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:32:37 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (2.1ms)
+Completed 200 OK in 17ms (Views: 15.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 19:32:41 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (14.8ms)
+  Rendered fibs/new.html.erb within layouts/application (15.9ms)
+Completed 200 OK in 30ms (Views: 29.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 19:32:45 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.5ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 62ms (Views: 59.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 19:53:57 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (7.7ms)
+  Rendered fibs/new.html.erb within layouts/application (9.0ms)
+Completed 500 Internal Server Error in 18ms (ActiveRecord: 1.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb___2633959657857184239_69939465411400'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb__2117914753983561336_69939549458800'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 19:57:56 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (5.8ms)
+  Rendered fibs/new.html.erb within layouts/application (7.4ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb___612800275057267673_70025084354960'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb__223660702622710162_70025084248440'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:02:55 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.7ms)
+  Rendered fibs/new.html.erb within layouts/application (6.0ms)
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.7ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__1720301167006267896_27662740'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___3672229506190638668_27740780'
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:03:00 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 213ms (Views: 209.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:03:06 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.4ms)
+  Rendered fibs/new.html.erb within layouts/application (6.1ms)
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__1720301167006267896_70233288153840'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___3672229506190638668_70233217866320'
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:03:07 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (2.4ms)
+Completed 200 OK in 22ms (Views: 20.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/1/edit" for 127.0.0.1 at 2018-03-29 20:03:09 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (12.5ms)
+  Rendered fibs/edit.html.erb within layouts/application (13.7ms)
+Completed 200 OK in 32ms (Views: 28.9ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:03:16 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.2ms)
+
+
+  
+NoMethodError (undefined method `count' for nil:NilClass):
+  
+app/models/fib.rb:24:in `generate'
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:77:in `generate_fibs_data'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:04:25 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.5ms)
+
+
+  
+NoMethodError (undefined method `count' for nil:NilClass):
+  
+app/models/fib.rb:24:in `generate'
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:78:in `generate_fibs_data'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:04:57 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.2ms)
+
+
+  
+NoMethodError (undefined method `count' for nil:NilClass):
+  
+app/models/fib.rb:24:in `generate'
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:78:in `generate_fibs_data'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:05:28 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 1.5ms)
+
+
+  
+NoMethodError (undefined method `count' for nil:NilClass):
+  
+app/models/fib.rb:24:in `generate'
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:78:in `generate_fibs_data'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:05:53 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.0ms)
+
+
+  
+NoMethodError (undefined method `count' for nil:NilClass):
+  
+app/models/fib.rb:24:in `generate'
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:78:in `generate_fibs_data'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:07:47 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.1ms)
+
+
+  
+NoMethodError (undefined method `count' for nil:NilClass):
+  
+app/models/fib.rb:24:in `generate'
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:79:in `generate_fibs_data'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:10:00 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.0ms)
+
+
+  
+NoMethodError (undefined method `count' for nil:NilClass):
+  
+app/models/fib.rb:25:in `generate'
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:79:in `generate_fibs_data'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:11:01 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.2ms)
+
+
+  
+NoMethodError (undefined method `nil' for nil:NilClass):
+  
+app/models/fib.rb:25:in `generate'
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:79:in `generate_fibs_data'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:11:16 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.2ms)
+
+
+  
+ActiveModel::UnknownAttributeError (unknown attribute 'fib' for Fib.):
+  
+app/controllers/fibs_controller.rb:45:in `block in update'
+app/controllers/fibs_controller.rb:44:in `update'
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:13:08 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8c8HH/bMD1OBMujdoj+d+WZa1vVqDorQh9HyBsBGUyosF/kkYmeRTluM5p5HBpu+qKKg8tBSQ4SlpsnlTcxr4Q==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/1
+Completed 302 Found in 15ms (ActiveRecord: 1.2ms)
+
+
+Started GET "/fibs/1" for 127.0.0.1 at 2018-03-29 20:13:08 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 16ms (Views: 14.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:13:13 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 17ms (Views: 16.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs/1/edit" for 127.0.0.1 at 2018-03-29 20:13:45 +0300
+  
+SyntaxError (/home/boogie/rails/eng_basics/app/controllers/fibs_controller.rb:80: syntax error, unexpected ':', expecting '}'
+      puts {"max_number": @fib.max_number, "sequence": 
+                         ^
+/home/boogie/rails/eng_basics/app/controllers/fibs_controller.rb:80: syntax error, unexpected tLABEL_END, expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+: @fib.max_number, "sequence": @fib.sequence, "squares": @fi
+                              ^
+/home/boogie/rails/eng_basics/app/controllers/fibs_controller.rb:80: syntax error, unexpected tLABEL_END, expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+ce": @fib.sequence, "squares": @fib.squares}
+                              ^
+/home/boogie/rails/eng_basics/app/controllers/fibs_controller.rb:80: syntax error, unexpected '}', expecting keyword_end
+ence, "squares": @fib.squares}
+                              ^):
+  
+app/controllers/fibs_controller.rb:80: syntax error, unexpected ':', expecting '}'
+app/controllers/fibs_controller.rb:80: syntax error, unexpected tLABEL_END, expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+app/controllers/fibs_controller.rb:80: syntax error, unexpected tLABEL_END, expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+app/controllers/fibs_controller.rb:80: syntax error, unexpected '}', expecting keyword_end
+Started GET "/fibs/1/edit" for 127.0.0.1 at 2018-03-29 20:14:11 +0300
+  
+SyntaxError (/home/boogie/rails/eng_basics/app/controllers/fibs_controller.rb:80: syntax error, unexpected ':', expecting '}'
+      puts {"max_number": @fib.max_number, "sequence": 
+                         ^
+/home/boogie/rails/eng_basics/app/controllers/fibs_controller.rb:80: syntax error, unexpected tLABEL_END, expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+: @fib.max_number, "sequence": @fib.sequence, "squares": @fi
+                              ^
+/home/boogie/rails/eng_basics/app/controllers/fibs_controller.rb:80: syntax error, unexpected tLABEL_END, expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+ce": @fib.sequence, "squares": @fib.squares}.inspect
+                              ^
+/home/boogie/rails/eng_basics/app/controllers/fibs_controller.rb:80: syntax error, unexpected '}', expecting keyword_end
+ence, "squares": @fib.squares}.inspect
+                              ^):
+  
+app/controllers/fibs_controller.rb:80: syntax error, unexpected ':', expecting '}'
+app/controllers/fibs_controller.rb:80: syntax error, unexpected tLABEL_END, expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+app/controllers/fibs_controller.rb:80: syntax error, unexpected tLABEL_END, expecting tSTRING_CONTENT or tSTRING_DBEG or tSTRING_DVAR or tSTRING_END
+app/controllers/fibs_controller.rb:80: syntax error, unexpected '}', expecting keyword_end
+Started GET "/fibs/1/edit" for 127.0.0.1 at 2018-03-29 20:15:59 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (11.2ms)
+  Rendered fibs/edit.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 220ms (Views: 194.7ms | ActiveRecord: 0.9ms)
+
+
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:16:04 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"PA83ZcD4JQGYpyArMxMgMqHqowdXO++iH4vuxCm4CNt2606sqPMuhiTWxDquHXvxEe5b2UAaTdCnAviTe9ObLA==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/1" for 127.0.0.1 at 2018-03-29 20:16:04 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 24ms (Views: 21.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:18:13 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 31ms (Views: 28.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:18:15 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (5.6ms)
+  Rendered fibs/new.html.erb within layouts/application (6.9ms)
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915835501200'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915835730900'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:22:18 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.4ms)
+  Rendered fibs/new.html.erb within layouts/application (5.3ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915861004280'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915860985400'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:23:16 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.2ms)
+  Rendered fibs/new.html.erb within layouts/application (5.1ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915862214260'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915862275380'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:23:43 +0300
+Processing by FibsController#new as HTML
+Completed 500 Internal Server Error in 9ms
+
+
+  
+NoMethodError (undefined method `build' for Fib (call 'Fib.connection' to establish a connection):Class):
+  
+app/controllers/fibs_controller.rb:18:in `new'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:23:56 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.8ms)
+  Rendered fibs/new.html.erb within layouts/application (5.7ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915861356860'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915861426220'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:26:33 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.0ms)
+  Rendered fibs/new.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 31ms (Views: 18.9ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:26:42 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (5.0ms)
+  Rendered fibs/new.html.erb within layouts/application (6.1ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.5ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915862271520'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915862340840'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:26:58 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (5.1ms)
+  Rendered fibs/new.html.erb within layouts/application (6.2ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.2ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_39288560'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_40033680'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:27:06 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.9ms)
+  Rendered fibs/new.html.erb within layouts/application (5.9ms)
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 1.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915841909020'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915842020620'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:27:13 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.1ms)
+  Rendered fibs/new.html.erb within layouts/application (5.0ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 0.9ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915695585580'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915695654960'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:27:20 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (8.0ms)
+  Rendered fibs/new.html.erb within layouts/application (9.7ms)
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 1.8ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915860992380'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915861014680'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:27:39 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.6ms)
+  Rendered fibs/new.html.erb within layouts/application (5.6ms)
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.1ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915864445400'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915864506680'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:27:41 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (5.7ms)
+  Rendered fibs/new.html.erb within layouts/application (7.4ms)
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915838488620'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915838605000'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:27:42 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.4ms)
+  Rendered fibs/new.html.erb within layouts/application (4.6ms)
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb__3180616073328319718_69915694284720'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___2211572087529567188_69915694350700'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:27:56 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.7ms)
+  Rendered fibs/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 31ms (Views: 20.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:28:13 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.4ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 31ms (Views: 27.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/fibs/1/edit" for 127.0.0.1 at 2018-03-29 20:28:14 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.7ms)
+  Rendered fibs/edit.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 22ms (Views: 19.9ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 20:28:21 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RXvGKwukTEzLusR66bj/ObfqpO1ZiH0PlfqiX6Ev3b+YozgQnw/SUREEyjkMgfl+eRLS6uPUtFu3jZm8LKXldA==", "fib"=>{"max_number"=>"7"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/1
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/1" for 127.0.0.1 at 2018-03-29 20:28:21 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 17ms (Views: 15.8ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:29:01 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.4ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (4.2ms)
+Completed 200 OK in 33ms (Views: 30.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:29:02 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (5.0ms)
+  Rendered fibs/new.html.erb within layouts/application (6.3ms)
+Completed 200 OK in 21ms (Views: 19.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:29:05 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bAosJk8dnIz9StC+nVyptsT5er8Q0eHdBsjUzn/M0tMgPQlnDjin+MUbuHkvJXyEhWl6USZCwRwY1WedWDgITw==", "fib"=>{"max_number"=>"5"}, "commit"=>"Create Fib"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `set_values' for nil:NilClass):
+  
+app/controllers/fibs_controller.rb:80:in `generate_fibs_data'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:31:55 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bAosJk8dnIz9StC+nVyptsT5er8Q0eHdBsjUzn/M0tMgPQlnDjin+MUbuHkvJXyEhWl6USZCwRwY1WedWDgITw==", "fib"=>{"max_number"=>"5"}, "commit"=>"Create Fib"}
+Completed 500 Internal Server Error in 5ms
+
+
+  
+NoMethodError (undefined method `set_values' for nil:NilClass):
+  
+app/controllers/fibs_controller.rb:80:in `generate_fibs_data'
+app/controllers/fibs_controller.rb:29:in `create'
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:32:01 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 29ms (Views: 26.2ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:32:03 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.5ms)
+  Rendered fibs/new.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 24ms (Views: 21.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:32:06 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GZG2Afx3EZ2gApk6zKREZRTO0+63dgA4tIizCwZ/GypVppNAvVIq6ZhT8f1+3ZFXVV7TAIHlIPmqlQBYIYvBtg==", "fib"=>{"max_number"=>"5"}, "commit"=>"Create Fib"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `set_values' for nil:NilClass):
+  
+app/controllers/fibs_controller.rb:80:in `generate_fibs_data'
+app/controllers/fibs_controller.rb:29:in `create'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:38:29 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GZG2Afx3EZ2gApk6zKREZRTO0+63dgA4tIizCwZ/GypVppNAvVIq6ZhT8f1+3ZFXVV7TAIHlIPmqlQBYIYvBtg==", "fib"=>{"max_number"=>"5"}, "commit"=>"Create Fib"}
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.7ms)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument.):
+  
+app/controllers/fibs_controller.rb:29:in `create'
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:38:40 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (8.0ms)
+Completed 200 OK in 140ms (Views: 138.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:38:42 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (35.9ms)
+  Rendered fibs/new.html.erb within layouts/application (37.7ms)
+Completed 200 OK in 57ms (Views: 54.7ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:38:45 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rsHkCkJHDeXizstr6M261zAky/Cnglb9m6GJk7wY48bi9sFLA2I2kdqfo6xatG/lcbTLHpERdjyFvDrAm+w5Wg==", "fib"=>{"max_number"=>"7"}, "commit"=>"Create Fib"}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.0ms)
+
+
+  
+ArgumentError (When assigning attributes, you must pass a hash as an argument.):
+  
+app/controllers/fibs_controller.rb:29:in `create'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:39:17 +0300
+Processing by FibsController#create as HTML
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:39:27 +0300
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rsHkCkJHDeXizstr6M261zAky/Cnglb9m6GJk7wY48bi9sFLA2I2kdqfo6xatG/lcbTLHpERdjyFvDrAm+w5Wg==", "fib"=>{"max_number"=>"7"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 1.1ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:32:in `block in create'
+app/controllers/fibs_controller.rb:31:in `create'
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rsHkCkJHDeXizstr6M261zAky/Cnglb9m6GJk7wY48bi9sFLA2I2kdqfo6xatG/lcbTLHpERdjyFvDrAm+w5Wg==", "fib"=>{"max_number"=>"7"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 12ms (ActiveRecord: 1.1ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/models/fib.rb:16:in `set_values'
+app/controllers/fibs_controller.rb:32:in `block in create'
+app/controllers/fibs_controller.rb:31:in `create'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:41:28 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"rsHkCkJHDeXizstr6M261zAky/Cnglb9m6GJk7wY48bi9sFLA2I2kdqfo6xatG/lcbTLHpERdjyFvDrAm+w5Wg==", "fib"=>{"max_number"=>"7"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 17:41:28.941012"], ["updated_at", "2018-03-29 17:41:28.941012"]]
+  [1m[35m (10.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/2
+Completed 302 Found in 26ms (ActiveRecord: 12.8ms)
+
+
+Started GET "/fibs/2" for 127.0.0.1 at 2018-03-29 20:41:29 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 18ms (Views: 15.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:42:16 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (12.7ms)
+Completed 200 OK in 32ms (Views: 28.1ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:42:18 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.8ms)
+  Rendered fibs/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 20ms (Views: 19.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:42:20 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"W8YskMecrNjNGwPyN6gzZ/JLDb3HuJSETzirWnnQAjgX8QnRhrmXrPVKazWF0eZVs9sNU/ErtEVRJRgJXiTYpA==", "fib"=>{"max_number"=>"7"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 17:42:20.942760"], ["updated_at", "2018-03-29 17:42:20.942760"]]
+  [1m[35m (5.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/3
+Completed 302 Found in 10ms (ActiveRecord: 6.4ms)
+
+
+Started GET "/fibs/3" for 127.0.0.1 at 2018-03-29 20:42:20 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 16ms (Views: 13.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:42:56 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (14.3ms)
+Completed 200 OK in 36ms (Views: 31.3ms | ActiveRecord: 1.6ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:42:58 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.0ms)
+  Rendered fibs/new.html.erb within layouts/application (3.9ms)
+Completed 500 Internal Server Error in 6ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb___4320882446563680380_70026892099640'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___38403659398704818_70026892167480'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:43:31 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.1ms)
+  Rendered fibs/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 34ms (Views: 20.7ms | ActiveRecord: 1.2ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:43:35 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"y8uentXXR+vhDSSRX1Zxmy9WWTpvoc4Mi9w9DUkJ6o+BL+dXvdxMbF18wIDCWCpYn1Kh5HiAbH4zVStaG2J5eA==", "fib"=>{"max_number"=>"8"}, "commit"=>"Create Fib"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 17:43:35.126566"], ["updated_at", "2018-03-29 17:43:35.126566"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/4
+Completed 302 Found in 13ms (ActiveRecord: 6.6ms)
+
+
+Started GET "/fibs/4" for 127.0.0.1 at 2018-03-29 20:43:35 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 17ms (Views: 15.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs/4" for 127.0.0.1 at 2018-03-29 20:44:24 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 29ms (Views: 15.0ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:44:26 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 19ms (Views: 17.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:44:27 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.5ms)
+  Rendered fibs/new.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 19ms (Views: 18.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:44:33 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"BXa7/xfFjTzsTKfNOeDgAywPsG0Lytfk8RHVZCj+g+VJQZ6+VuC2SNQdzwqLmTUxbZ+wgz1Z9yXvDGY3DwpZeQ==", "fib"=>{"max_number"=>"8"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 17:44:33.032135"], ["updated_at", "2018-03-29 17:44:33.032135"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/5
+Completed 302 Found in 11ms (ActiveRecord: 6.2ms)
+
+
+Started GET "/fibs/5" for 127.0.0.1 at 2018-03-29 20:44:33 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 29ms (Views: 27.4ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:51:00 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (12.9ms)
+Completed 200 OK in 31ms (Views: 27.8ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 20:51:02 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.8ms)
+  Rendered fibs/new.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 31ms (Views: 27.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 20:51:26 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"yUsYDXnxkeQieBgvAth+30ZPSS9CU+wH4EgIZIHrKwmFfD1MONSqkBopcOiwoavtB99JwXTAzMb+Vbs3ph/xlQ==", "fib"=>{"max_number"=>"7"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 17:51:26.566693"], ["updated_at", "2018-03-29 17:51:26.566693"]]
+  [1m[35m (3.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/6
+Completed 302 Found in 8ms (ActiveRecord: 4.0ms)
+
+
+Started GET "/fibs/6" for 127.0.0.1 at 2018-03-29 20:51:26 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 17ms (Views: 15.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 20:53:12 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (2.7ms)
+Completed 200 OK in 19ms (Views: 17.6ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 21:03:49 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (10.5ms)
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `join' for nil:NilClass):
+    16:     <% @fibs.each do |fib| %>
+    17:       <tr>
+    18:         <td><%= fib.max_number %></td>
+    19:         <td><%= fib.sequence %></td>
+    20:         <td><%= fib.squares %></td>
+    21:         <td><%= link_to 'Show', fib %></td>
+    22:         <td><%= link_to 'Edit', edit_fib_path(fib) %></td>
+  
+app/models/fib.rb:31:in `sequence'
+app/views/fibs/index.html.erb:19:in `block in _app_views_fibs_index_html_erb___276342747935207559_70026895165040'
+app/views/fibs/index.html.erb:16:in `_app_views_fibs_index_html_erb___276342747935207559_70026895165040'
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 21:04:42 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (21.7ms)
+Completed 200 OK in 43ms (Views: 39.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/fibs/1/edit" for 127.0.0.1 at 2018-03-29 21:04:48 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mFib Load (0.4ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.7ms)
+  Rendered fibs/edit.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 27ms (Views: 23.6ms | ActiveRecord: 0.4ms)
+
+
+Started PATCH "/fibs/1" for 127.0.0.1 at 2018-03-29 21:04:51 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"RRyxCC4OkPjZ/dAYWdvpy/3ObFGTGvbGG7akzm+3Wo2YxE8zuqUO5QND3lu84u+MMzYaVilGP5I5wZ8t4j1iRg==", "fib"=>{"max_number"=>"9"}, "commit"=>"Update Fib", "id"=>"1"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+Completed 500 Internal Server Error in 146ms (ActiveRecord: 0.3ms)
+
+
+  
+NameError (undefined local variable or method `generate_fibs_data' for #<FibsController:0x00007f60d4f586b0>):
+  
+app/controllers/fibs_controller.rb:47:in `block in update'
+app/controllers/fibs_controller.rb:46:in `update'
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 21:05:17 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (2.9ms)
+Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 21:05:18 +0300
+Processing by FibsController#new as HTML
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1)):
+  
+app/models/fib.rb:8:in `initialize'
+app/controllers/fibs_controller.rb:18:in `new'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 21:05:40 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (4.4ms)
+  Rendered fibs/new.html.erb within layouts/application (5.4ms)
+Completed 500 Internal Server Error in 11ms (ActiveRecord: 1.0ms)
+
+
+  
+ActionView::Template::Error (undefined method `fetch_value' for nil:NilClass):
+    1: <%= form_with(model: fib, local: true) do |form| %>
+    2:   <% if fib.errors.any? %>
+    3:     <div id="error_explanation">
+    4:       <h2><%= pluralize(fib.errors.count, "error") %> prohibited this fib from being saved:</h2>
+  
+app/views/fibs/_form.html.erb:1:in `_app_views_fibs__form_html_erb___4320882446563680380_39115980'
+app/views/fibs/new.html.erb:3:in `_app_views_fibs_new_html_erb___38403659398704818_39548080'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 21:06:53 +0300
+Processing by FibsController#new as HTML
+Completed 500 Internal Server Error in 10ms
+
+
+  
+NoMethodError (undefined method `build' for Fib (call 'Fib.connection' to establish a connection):Class):
+  
+app/controllers/fibs_controller.rb:18:in `new'
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 21:17:05 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.6ms)
+  Rendered fibs/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 31ms (Views: 18.1ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 21:17:10 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Ef/5ROBH0IoPAPrPdKoLRCZKxN0LyLl8IRb2qlJqeJhbG4CNiEzbDbNxHt7ppFCHlk48AxzpGw6Zn+D9AAHrbw==", "fib"=>{"max_number"=>"8"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 18:17:10.028128"], ["updated_at", "2018-03-29 18:17:10.028128"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/7
+Completed 302 Found in 11ms (ActiveRecord: 5.8ms)
+
+
+Started GET "/fibs/7" for 127.0.0.1 at 2018-03-29 21:17:10 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"7"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 20ms (Views: 16.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 21:19:09 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (12.5ms)
+Completed 200 OK in 31ms (Views: 27.8ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 21:19:11 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.9ms)
+  Rendered fibs/new.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 19ms (Views: 17.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 21:19:14 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"tpgrLrjhuu/BI5kmROy7IKogZoT1qoiUspLRjvEsh+r6rw5v+cSBm/ly8eH2lW4S67BmasM5qFWsj2Ld1thddg==", "fib"=>{"max_number"=>"4"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 18:19:14.051328"], ["updated_at", "2018-03-29 18:19:14.051328"]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/8
+Completed 302 Found in 10ms (ActiveRecord: 6.2ms)
+
+
+Started GET "/fibs/8" for 127.0.0.1 at 2018-03-29 21:19:14 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"8"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 17ms (Views: 15.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 21:20:35 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (12.3ms)
+Completed 200 OK in 32ms (Views: 28.1ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 21:20:36 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.2ms)
+  Rendered fibs/new.html.erb within layouts/application (3.3ms)
+Completed 200 OK in 18ms (Views: 17.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 21:20:41 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"/anGX+GkXsWqyLoL/YdD4Ko22pwwCTb8JV3Z3cOjSQGxnuMeoIFlsZKZ0sxP/pbS66bacgaaFj07QGqO5FeTnQ==", "fib"=>{"max_number"=>"9"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 18:20:41.481471"], ["updated_at", "2018-03-29 18:20:41.481471"]]
+  [1m[35m (7.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/9
+Completed 302 Found in 13ms (ActiveRecord: 8.0ms)
+
+
+Started GET "/fibs/9" for 127.0.0.1 at 2018-03-29 21:20:41 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"9"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 18ms (Views: 15.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 21:20:53 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 26ms (Views: 24.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 21:21:34 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.6ms)
+  Rendered fibs/new.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 28ms (Views: 17.1ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 21:21:38 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"YBcpkoCyLx6ZqCAafPA1z9OR73C+kIKuaI7gXGyovn4sIAzTwZcUaqH5SN3OieD9kgHvnogDom92k1MPS1xk4g==", "fib"=>{"max_number"=>"10"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 18:21:38.093815"], ["updated_at", "2018-03-29 18:21:38.093815"]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/10
+Completed 302 Found in 10ms (ActiveRecord: 6.0ms)
+
+
+Started GET "/fibs/10" for 127.0.0.1 at 2018-03-29 21:21:38 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"10"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 17ms (Views: 14.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 21:23:18 +0300
+Processing by FibsController#index as HTML
+Completed 500 Internal Server Error in 34ms
+
+
+  
+NoMethodError (undefined method `attr_accessible' for Fib (call 'Fib.connection' to establish a connection):Class
+Did you mean?  attr_accessor):
+  
+app/models/fib.rb:3:in `<class:Fib>'
+app/models/fib.rb:1:in `<top (required)>'
+app/controllers/fibs_controller.rb:8:in `index'
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 18:26:51.793598"], ["updated_at", "2018-03-29 18:26:51.793598"]]
+  [1m[35m (8.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 18:30:34.810029"], ["updated_at", "2018-03-29 18:30:34.810029"]]
+  [1m[35m (6.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["max_number", 5], ["sequence", "sdfsdf"], ["created_at", "2018-03-29 18:34:05.512403"], ["updated_at", "2018-03-29 18:34:05.512403"]]
+  [1m[35m (6.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "fibs" ("created_at", "updated_at") VALUES (?, ?)[0m  [["created_at", "2018-03-29 18:42:23.859950"], ["updated_at", "2018-03-29 18:42:23.859950"]]
+  [1m[35m (9.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 5], ["sequence", "0,1,1,2,3"], ["created_at", "2018-03-29 19:12:36.773916"], ["updated_at", "2018-03-29 19:12:36.773916"], ["squares", 15]]
+  [1m[35m (6.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:24:17 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (20.4ms)
+Completed 200 OK in 211ms (Views: 199.4ms | ActiveRecord: 1.3ms)
+
+
+Started DELETE "/fibs/2" for 127.0.0.1 at 2018-03-29 22:24:24 +0300
+Processing by FibsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"KnwUtfWjD1uCJ1qGLw1ws72L+VOcdY9cYuIFLnUzmUtgmG18nagE3D5WvpeyAytwDY8BjYtULS7aaxN5J1gKvA==", "id"=>"2"}
+  [1m[36mFib Load (0.4ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[31mDELETE FROM "fibs" WHERE "fibs"."id" = ?[0m  [["id", 2]]
+  [1m[35m (26.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs
+Completed 302 Found in 36ms (ActiveRecord: 28.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:24:24 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (4.4ms)
+Completed 200 OK in 21ms (Views: 19.2ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/fibs/3" for 127.0.0.1 at 2018-03-29 22:24:27 +0300
+Processing by FibsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"j0AapWHS7eKWfSqf3vllkGpEqXrjMLxFitI4xLnjb2HFpGNsCdnmZSoMzo5D9z5T2kBRpPQRHjcyWy6T64j8lg==", "id"=>"3"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[31mDELETE FROM "fibs" WHERE "fibs"."id" = ?[0m  [["id", 3]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs
+Completed 302 Found in 10ms (ActiveRecord: 6.8ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:24:27 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (4.8ms)
+Completed 200 OK in 21ms (Views: 19.6ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/fibs/4" for 127.0.0.1 at 2018-03-29 22:24:29 +0300
+Processing by FibsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"kpKQvaRet3+1m44a/o10NhizJtUYjsubXtcRzabXkSnYdul0zFW8+Anqagtjgy/1qLfeCw+vaenmXgea9LwC3g==", "id"=>"4"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "fibs" WHERE "fibs"."id" = ?[0m  [["id", 4]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs
+Completed 302 Found in 10ms (ActiveRecord: 5.9ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:24:29 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 35ms (Views: 33.6ms | ActiveRecord: 0.2ms)
+
+
+Started DELETE "/fibs/5" for 127.0.0.1 at 2018-03-29 22:24:30 +0300
+Processing by FibsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"7S3Q9NLjECR/Bn3yD2QcQ++e6+kQeqaJE5TPzJ9ti6enyak9uugbo8N3meOSakeAX5oTNwdbBPurHdmbzQYYUA==", "id"=>"5"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[31mDELETE FROM "fibs" WHERE "fibs"."id" = ?[0m  [["id", 5]]
+  [1m[35m (5.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs
+Completed 302 Found in 12ms (ActiveRecord: 6.6ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:24:31 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 38ms (Views: 36.2ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/fibs/6" for 127.0.0.1 at 2018-03-29 22:24:32 +0300
+Processing by FibsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"D5e4/+sOGMNazGC8XdASaJjlEdn5+ZMogpSDdwDlHWVFc8E2gwUTROa9hK3A3kmrKOHpB+7YMVo6HZUgUo6Okg==", "id"=>"6"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM "fibs" WHERE "fibs"."id" = ?[0m  [["id", 6]]
+  [1m[35m (5.7ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs
+Completed 302 Found in 11ms (ActiveRecord: 6.5ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:24:32 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.7ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 41ms (Views: 38.8ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 22:24:34 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (14.2ms)
+  Rendered fibs/new.html.erb within layouts/application (15.5ms)
+Completed 200 OK in 33ms (Views: 31.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:24:40 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Gu2DyQ1Euw98uSVPj5zvrL0pOt5qPaXQg34MLJ2IufVW2qaITGGAe0ToTYg95Tqe/Lk6MFyuhRGdY79/unxjaQ==", "fib"=>{"max_number"=>"12"}, "commit"=>"Create Fib"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.6ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 12], ["sequence", "0,1,1,2,3,5,8,13,21,34,55,89"], ["created_at", "2018-03-29 19:24:40.624637"], ["updated_at", "2018-03-29 19:24:40.624637"], ["squares", 12816]]
+  [1m[35m (8.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/16
+Completed 302 Found in 22ms (ActiveRecord: 10.3ms)
+
+
+Started GET "/fibs/16" for 127.0.0.1 at 2018-03-29 22:24:40 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"16"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 16], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 19ms (Views: 17.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:24:49 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.4ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (6.4ms)
+Completed 200 OK in 29ms (Views: 26.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 22:24:50 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.2ms)
+  Rendered fibs/new.html.erb within layouts/application (3.2ms)
+Completed 200 OK in 18ms (Views: 17.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:24:53 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"z0LZBeWwwfoGOi0M3ImGnXqUbX4DIemausFG7Ltvp2uDdfxEpJX6jj5rRctu8FOvOwRtkDWyyVuk3PW/nJt99w==", "fib"=>{"max_number"=>"3"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 3], ["sequence", "0,1,1"], ["created_at", "2018-03-29 19:24:53.253491"], ["updated_at", "2018-03-29 19:24:53.253491"], ["squares", 2]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/17
+Completed 302 Found in 10ms (ActiveRecord: 6.2ms)
+
+
+Started GET "/fibs/17" for 127.0.0.1 at 2018-03-29 22:24:53 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 24ms (Views: 22.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:24:58 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.6ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 38ms (Views: 33.3ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/fibs/17/edit" for 127.0.0.1 at 2018-03-29 22:25:04 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.6ms)
+  Rendered fibs/edit.html.erb within layouts/application (4.6ms)
+Completed 200 OK in 21ms (Views: 18.8ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs/17/edit" for 127.0.0.1 at 2018-03-29 22:27:40 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.7ms)
+  Rendered fibs/edit.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 31ms (Views: 18.0ms | ActiveRecord: 1.2ms)
+
+
+Started PATCH "/fibs/17" for 127.0.0.1 at 2018-03-29 22:27:46 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"HZVsMOQyNrwMJtv1I/MAgjvlFA4dDPbQhBVVDdjW1FFXcRX5jDk9O7BXP+S+/VtBi+Hs0AotVKI8nENair1Hpg==", "fib"=>{"max_number"=>"5"}, "commit"=>"Update Fib", "id"=>"17"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "fibs" SET "max_number" = ?, "sequence" = ?, "updated_at" = ?, "squares" = ? WHERE "fibs"."id" = ?[0m  [["max_number", 5], ["sequence", "0,1,1,2,3"], ["updated_at", "2018-03-29 19:27:46.122867"], ["squares", 15], ["id", 17]]
+  [1m[35m (5.5ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/17
+Completed 302 Found in 12ms (ActiveRecord: 6.5ms)
+
+
+Started GET "/fibs/17" for 127.0.0.1 at 2018-03-29 22:27:46 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 16ms (Views: 14.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs/17/edit" for 127.0.0.1 at 2018-03-29 22:27:53 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.1ms)
+  Rendered fibs/edit.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 26ms (Views: 23.3ms | ActiveRecord: 0.2ms)
+
+
+Started PATCH "/fibs/17" for 127.0.0.1 at 2018-03-29 22:28:00 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"ofrZL5HPOQD0TIsCv4A+lTlkURzEzupH6syt578p6BlXRQ8bFOhjFabB7GozLMpchVPcaA8WVY8VjkznZSB6xw==", "fib"=>{"max_number"=>"15"}, "commit"=>"Update Fib", "id"=>"17"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[33mUPDATE "fibs" SET "max_number" = ?, "sequence" = ?, "updated_at" = ?, "squares" = ? WHERE "fibs"."id" = ?[0m  [["max_number", 15], ["sequence", "0,1,1,2,3,5,8,13,21,34,55,89,144,233,377"], ["updated_at", "2018-03-29 19:28:00.410183"], ["squares", 229970], ["id", 17]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/17
+Completed 302 Found in 17ms (ActiveRecord: 5.9ms)
+
+
+Started GET "/fibs/17" for 127.0.0.1 at 2018-03-29 22:28:00 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"17"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 17], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 22ms (Views: 20.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:28:05 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 22ms (Views: 20.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 22:30:36 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.7ms)
+  Rendered fibs/new.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 37ms (Views: 24.0ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:30:42 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"M6896uX1FS/6/UB/2f1qRHTBG0cUVVmLNG4UlekaqpJ/mBirpNAuW8KsKLhrhL92NVEbqSLGeUoqc6fGzu5wDg==", "fib"=>{"max_number"=>"4"}, "commit"=>"Create Fib"}
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.0ms)
+
+
+  
+NoMethodError (undefined method `set_values' for nil:NilClass):
+  
+app/controllers/fibs_controller.rb:82:in `generate_fibs_data'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:31:45 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"M6896uX1FS/6/UB/2f1qRHTBG0cUVVmLNG4UlekaqpJ/mBirpNAuW8KsKLhrhL92NVEbqSLGeUoqc6fGzu5wDg==", "fib"=>{"max_number"=>"4"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 4], ["sequence", "0,1,1,2"], ["created_at", "2018-03-29 19:31:45.095709"], ["updated_at", "2018-03-29 19:31:45.095709"], ["squares", 6]]
+  [1m[35m (5.1ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/18
+Completed 302 Found in 21ms (ActiveRecord: 6.5ms)
+
+
+Started GET "/fibs/18" for 127.0.0.1 at 2018-03-29 22:31:45 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"18"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 18], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 17ms (Views: 15.1ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:31:47 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 24ms (Views: 22.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 22:33:22 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.0ms)
+  Rendered fibs/new.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 31ms (Views: 18.9ms | ActiveRecord: 1.1ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:33:25 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"hAcXO+4U/PvizhlHBNineWWswVGL9Y+o/eL63iRpSjTIMDJ6rzHHj9qfcYC2oXJLJDzBv71mr2nj/0mNA52QqA==", "fib"=>{"max_number"=>"1"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 1], ["sequence", "0"], ["created_at", "2018-03-29 19:33:25.641535"], ["updated_at", "2018-03-29 19:33:25.641535"], ["squares", 0]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/19
+Completed 302 Found in 11ms (ActiveRecord: 5.9ms)
+
+
+Started GET "/fibs/19" for 127.0.0.1 at 2018-03-29 22:33:25 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mFib Load (0.4ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 19ms (Views: 14.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:33:27 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (7.5ms)
+Completed 200 OK in 29ms (Views: 26.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/19/edit" for 127.0.0.1 at 2018-03-29 22:33:33 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (2.8ms)
+  Rendered fibs/edit.html.erb within layouts/application (4.0ms)
+Completed 200 OK in 22ms (Views: 20.5ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/fibs/19" for 127.0.0.1 at 2018-03-29 22:33:36 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"5VNQuJIZ7fHJaBRw0QelgGms1+ZX23enDhz3RnLMmBp+EdRq0cOU3xvSXKZ5jKQrVGjcJWNacUFjo9nBUrNnpg==", "fib"=>{"max_number"=>"2"}, "commit"=>"Update Fib", "id"=>"19"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[33mUPDATE "fibs" SET "max_number" = ?, "sequence" = ?, "updated_at" = ?, "squares" = ? WHERE "fibs"."id" = ?[0m  [["max_number", 2], ["sequence", "0,1"], ["updated_at", "2018-03-29 19:33:36.461675"], ["squares", 1], ["id", 19]]
+  [1m[35m (5.2ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/19
+Completed 302 Found in 11ms (ActiveRecord: 6.2ms)
+
+
+Started GET "/fibs/19" for 127.0.0.1 at 2018-03-29 22:33:36 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"19"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 19], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 17ms (Views: 15.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:33:40 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 22:35:06 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.6ms)
+  Rendered fibs/new.html.erb within layouts/application (5.1ms)
+Completed 200 OK in 41ms (Views: 25.9ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:35:09 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gCRVCw8li+5jZF1WwT6VzGjhgNQvW+TNVW8bGUG/tljME3BKTgCwmls1NZFzR0D+KXGAOhnIxAxLcqhKZktsxA==", "fib"=>{"max_number"=>"5"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 5], ["sequence", "0,1,1,2,3"], ["created_at", "2018-03-29 19:35:09.376242"], ["updated_at", "2018-03-29 19:35:09.376242"], ["squares", 15]]
+  [1m[35m (4.6ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/20
+Completed 302 Found in 9ms (ActiveRecord: 5.0ms)
+
+
+Started GET "/fibs/20" for 127.0.0.1 at 2018-03-29 22:35:09 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 18ms (Views: 15.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/20/edit" for 127.0.0.1 at 2018-03-29 22:35:15 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.7ms)
+  Rendered fibs/edit.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 22ms (Views: 20.7ms | ActiveRecord: 0.1ms)
+
+
+Started PATCH "/fibs/20" for 127.0.0.1 at 2018-03-29 22:35:25 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"f+X9qBvQltIGrQyPKU46xf1J9OP/e49YoKzeC34SQ4VCBCx1QIWphdXHb+VJbVv/qw5jth17WN6EzTKTPKP3xQ==", "fib"=>{"max_number"=>"50"}, "commit"=>"Update Fib", "id"=>"20"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:40:31 +0300
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (18.0ms)
+Completed 200 OK in 197ms (Views: 186.5ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 22:40:35 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (11.4ms)
+  Rendered fibs/new.html.erb within layouts/application (12.6ms)
+Completed 200 OK in 49ms (Views: 47.4ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:40:39 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"wQvZv8e2ybc8KbePrmBwjhVJLyqUjU1umC+VoEXVqWGNPPz+hpPywwR430gcGaW8VNkvxKIeba+GMibzYiFz/Q==", "fib"=>{"max_number"=>"20"}, "commit"=>"Create Fib"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 20], ["sequence", "0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181"], ["created_at", "2018-03-29 19:40:39.034502"], ["updated_at", "2018-03-29 19:40:39.034502"], ["squares", 28284465]]
+  [1m[35m (6.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/21
+Completed 302 Found in 26ms (ActiveRecord: 7.9ms)
+
+
+Started GET "/fibs/21" for 127.0.0.1 at 2018-03-29 22:40:39 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"21"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 21], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 23ms (Views: 18.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:40:46 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 23ms (Views: 22.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 22:40:48 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.0ms)
+  Rendered fibs/new.html.erb within layouts/application (4.3ms)
+Completed 200 OK in 38ms (Views: 36.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:40:52 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GKyNMCNEk0ATUhsJrMxReM9qBFXzulsG8dxRUZVw9chUm6hxYmGoNCsDc84etYRKjvoEu8Upe8fvweICsoQvVA==", "fib"=>{"max_number"=>"25"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 133ms (ActiveRecord: 0.2ms)
+
+
+  
+ActiveModel::RangeError (3478759200 is out of range for ActiveModel::Type::Integer with limit 4 bytes):
+  
+app/controllers/fibs_controller.rb:34:in `block in create'
+app/controllers/fibs_controller.rb:33:in `create'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:41:28 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GKyNMCNEk0ATUhsJrMxReM9qBFXzulsG8dxRUZVw9chUm6hxYmGoNCsDc84etYRKjvoEu8Upe8fvweICsoQvVA==", "fib"=>{"max_number"=>"24"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 24], ["sequence", "0,1,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987,1597,2584,4181,6765,10946,17711,28657"], ["created_at", "2018-03-29 19:41:28.370218"], ["updated_at", "2018-03-29 19:41:28.370218"], ["squares", 1328767776]]
+  [1m[35m (5.3ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/22
+Completed 302 Found in 132ms (ActiveRecord: 6.1ms)
+
+
+Started GET "/fibs/22" for 127.0.0.1 at 2018-03-29 22:41:28 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"22"}
+  [1m[36mFib Load (0.6ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 22], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 15ms (Views: 13.5ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:41:40 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 24ms (Views: 22.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-29 22:41:41 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.6ms)
+  Rendered fibs/new.html.erb within layouts/application (6.1ms)
+Completed 200 OK in 27ms (Views: 25.2ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:41:45 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KbSgaaJ1FjMKJgjuF1QNKuZ5fxk4baXbrcMXwt639TVlg4Uo41AtRzJ3YCmlLdgYp+l/9w7+hRqz3qSR+UMvqQ==", "fib"=>{"max_number"=>"30"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 1337ms (ActiveRecord: 0.1ms)
+
+
+  
+ActiveModel::RangeError (427859097160 is out of range for ActiveModel::Type::Integer with limit 4 bytes):
+  
+app/controllers/fibs_controller.rb:34:in `block in create'
+app/controllers/fibs_controller.rb:33:in `create'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:41:52 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KbSgaaJ1FjMKJgjuF1QNKuZ5fxk4baXbrcMXwt639TVlg4Uo41AtRzJ3YCmlLdgYp+l/9w7+hRqz3qSR+UMvqQ==", "fib"=>{"max_number"=>"35"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 13818ms (ActiveRecord: 0.1ms)
+
+
+  
+ActiveModel::RangeError (52623190191455 is out of range for ActiveModel::Type::Integer with limit 4 bytes):
+  
+app/controllers/fibs_controller.rb:34:in `block in create'
+app/controllers/fibs_controller.rb:33:in `create'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-29 22:44:23 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KbSgaaJ1FjMKJgjuF1QNKuZ5fxk4baXbrcMXwt639TVlg4Uo41AtRzJ3YCmlLdgYp+l/9w7+hRqz3qSR+UMvqQ==", "fib"=>{"max_number"=>"15"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "fibs" ("max_number", "sequence", "created_at", "updated_at", "squares") VALUES (?, ?, ?, ?, ?)[0m  [["max_number", 15], ["sequence", "0,1,1,2,3,5,8,13,21,34,55,89,144,233,377"], ["created_at", "2018-03-29 19:44:23.965695"], ["updated_at", "2018-03-29 19:44:23.965695"], ["squares", 229970]]
+  [1m[35m (4.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/23
+Completed 302 Found in 25ms (ActiveRecord: 6.4ms)
+
+
+Started GET "/fibs/23" for 127.0.0.1 at 2018-03-29 22:44:24 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 40ms (Views: 36.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/23/edit" for 127.0.0.1 at 2018-03-29 22:44:27 +0300
+Processing by FibsController#edit as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  Rendering fibs/edit.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (3.6ms)
+  Rendered fibs/edit.html.erb within layouts/application (5.2ms)
+Completed 200 OK in 25ms (Views: 22.0ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/fibs/23" for 127.0.0.1 at 2018-03-29 22:44:32 +0300
+Processing by FibsController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"N7vbilPQFuXmIMKUwMKbR08PY/VNyt9z88B+GXpYOAfLiDMDRBp32HLxgAvzEG8ydNQ+o3dIvShQyaodqXlGkA==", "fib"=>{"max_number"=>"14"}, "commit"=>"Update Fib", "id"=>"23"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[33mUPDATE "fibs" SET "max_number" = ?, "sequence" = ?, "squares" = ?, "updated_at" = ? WHERE "fibs"."id" = ?[0m  [["max_number", 14], ["sequence", "0,1,1,2,3,5,8,13,21,34,55,89,144,233"], ["squares", 87841], ["updated_at", "2018-03-29 19:44:32.862759"], ["id", 23]]
+  [1m[35m (4.8ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs/23
+Completed 302 Found in 11ms (ActiveRecord: 5.7ms)
+
+
+Started GET "/fibs/23" for 127.0.0.1 at 2018-03-29 22:44:32 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 20ms (Views: 16.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:44:36 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.4ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 35ms (Views: 33.0ms | ActiveRecord: 0.4ms)
+
+
+Started DELETE "/fibs/7" for 127.0.0.1 at 2018-03-29 22:44:41 +0300
+Processing by FibsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"8GtQvK/ZzxkuiQ6uLMrVjxR3nnu8GdV1IsaOf5ZQyIm6jyl1x9LEnpL46r+xxI5MpHNmpas4dweaT5goxDtbfg==", "id"=>"7"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[31mDELETE FROM "fibs" WHERE "fibs"."id" = ?[0m  [["id", 7]]
+  [1m[35m (8.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs
+Completed 302 Found in 12ms (ActiveRecord: 9.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:44:41 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.7ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (8.7ms)
+Completed 200 OK in 25ms (Views: 23.3ms | ActiveRecord: 0.7ms)
+
+
+Started DELETE "/fibs/8" for 127.0.0.1 at 2018-03-29 22:44:43 +0300
+Processing by FibsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"TN65+db5YpYttCvFPhCeIFoaqzgm4t7oLQoC88I2aKsGOsAwvvJpEZHFz9SjHsXj6h5T5jHDfJqVgxSkkF37XA==", "id"=>"8"}
+  [1m[36mFib Load (0.1ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35mSQL (0.2ms)[0m  [1m[31mDELETE FROM "fibs" WHERE "fibs"."id" = ?[0m  [["id", 8]]
+  [1m[35m (5.9ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/fibs
+Completed 302 Found in 11ms (ActiveRecord: 6.3ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-29 22:44:44 +0300
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 21ms (Views: 19.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/fibs/230" for 127.0.0.1 at 2018-03-30 00:01:55 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"230"}
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 230], ["LIMIT", 1]]
+Completed 404 Not Found in 13ms (ActiveRecord: 0.8ms)
+
+
+  
+ActiveRecord::RecordNotFound (Couldn't find Fib with 'id'=230):
+  
+app/controllers/fibs_controller.rb:69:in `set_fib'
+Started GET "/fibs/23" for 127.0.0.1 at 2018-03-30 00:01:58 +0300
+Processing by FibsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mFib Load (0.3ms)[0m  [1m[34mSELECT  "fibs".* FROM "fibs" WHERE "fibs"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  Rendering fibs/show.html.erb within layouts/application
+  Rendered fibs/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 182ms (Views: 164.4ms | ActiveRecord: 1.1ms)
+
+
+Started GET "/fibs" for 127.0.0.1 at 2018-03-30 00:31:52 +0300
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by FibsController#index as HTML
+  Rendering fibs/index.html.erb within layouts/application
+  [1m[36mFib Load (0.2ms)[0m  [1m[34mSELECT "fibs".* FROM "fibs"[0m
+  Rendered fibs/index.html.erb within layouts/application (13.4ms)
+Completed 200 OK in 157ms (Views: 146.3ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/fibs/new" for 127.0.0.1 at 2018-03-30 00:31:54 +0300
+Processing by FibsController#new as HTML
+  Rendering fibs/new.html.erb within layouts/application
+  Rendered fibs/_form.html.erb (13.2ms)
+  Rendered fibs/new.html.erb within layouts/application (14.5ms)
+Completed 200 OK in 30ms (Views: 28.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/fibs" for 127.0.0.1 at 2018-03-30 00:31:58 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bs7Y5M4WvWDzfjjw0cHbkPvJZ1ETRfrULk16bnMZ8NAi+f2ljzOGFMsvUDdjuA6iullnvyXW2hUwUMk9VO0qTA==", "fib"=>{"max_number"=>"30"}, "commit"=>"Create Fib"}
+  [1m[35m (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.4ms)
+
+
+  
+ActiveModel::RangeError (427859097160 is out of range for ActiveModel::Type::Integer with limit 4 bytes):
+  
+app/controllers/fibs_controller.rb:31:in `block in create'
+app/controllers/fibs_controller.rb:30:in `create'
+Started POST "/fibs" for 127.0.0.1 at 2018-03-30 00:32:03 +0300
+Processing by FibsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bs7Y5M4WvWDzfjjw0cHbkPvJZ1ETRfrULk16bnMZ8NAi+f2ljzOGFMsvUDdjuA6iullnvyXW2hUwUMk9VO0qTA==", "fib"=>{"max_number"=>"50"}, "commit"=>"Create Fib"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  [1m[31mrollback transaction[0m
+Completed 500 Internal Server Error in 3ms (ActiveRecord: 0.1ms)
+
+
+  
+ActiveModel::RangeError (97905340104793732225 is out of range for ActiveModel::Type::Integer with limit 4 bytes):
+  
+app/controllers/fibs_controller.rb:31:in `block in create'
+app/controllers/fibs_controller.rb:30:in `create'
